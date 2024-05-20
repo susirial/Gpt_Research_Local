@@ -27,7 +27,10 @@ def get_provider(llm_provider):
         case "google":
             from ..llm_provider import GoogleProvider
             llm_provider = GoogleProvider
-
+        # Add Glm
+        case "glm":
+            from ..llm_provider import GlmProvider
+            llm_provider = GlmProvider
         case _:
             raise Exception("LLM provider not found.")
 

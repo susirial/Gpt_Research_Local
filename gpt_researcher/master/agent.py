@@ -1,6 +1,8 @@
 import asyncio
 import time
 
+from zhipuai import ZhipuAI
+
 from gpt_researcher.config import Config
 from gpt_researcher.context.compression import ContextCompressor
 from gpt_researcher.master.functions import *
@@ -170,8 +172,46 @@ class GPTResearcher:
         if self.verbose:
             await stream_output("logs", f"\n🔎 Running research for '{sub_query}'...", self.websocket)
 
-        scraped_sites = await self.scrape_sites_by_query(sub_query)
-        content = await self.get_similar_content_by_query(sub_query, scraped_sites)
+        # Retrieve doc based on urls. what if there is no urls?
+		# Use Zhipu Web Search, tmp fix
+        # scraped_sites = await self.scrape_sites_by_query(sub_query)
+        # content = await self.get_similar_content_by_query(sub_query, scraped_sites)
+        from langchain_core.tools import tool
+        @tool
+        def zhipu_search(query: str):
+            """
+            智谱搜索引擎，输入一个字符串问题，返回字符串结果
+            """
+			zhipuai_key = os.getenv('MY_ZHIPUAI_API_KEY')
+            client = ZhipuAI(api_key=zhipuai_key)
+
+            tools = [{
+                "type": "web_search",
+                "web_search": {
+                    "enable": True,
+                }
+            }]
+
+            messages = [{
+                "role": "user",
+                "content": query
+            }]
+
+            try:
+                response = client.chat.completions.create(
+                    model="glm-4",
+                    messages=messages,
+                    tools=tools
+                )
+
+                msg = response.choices[0].message.content
+                print('智谱搜索:\n 问题：{}\n回答：{}'.format(query, msg))
+            except Exception as e:
+                print('智谱搜索异常:\n 问题：{}\n 异常：{}'.format(query, e))
+                msg = "智谱搜索没有找到答案。"
+            return msg
+
+        content = await zhipu_search.ainvoke(sub_query)
 
         if content and self.verbose:
             await stream_output("logs", f"📃 {content}", self.websocket)

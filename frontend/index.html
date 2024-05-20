@@ -43,17 +43,15 @@
 <section class="landing">
     <div class="max-w-5xl mx-auto text-center">
         <h1 class="text-4xl font-extrabold mx-auto lg:text-7xl">
-            Say Goodbye to <br>
+            说拜拜 <br>
             <span
-                    style="background-image:linear-gradient(to right, #9867F0, #ED4E50); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Hours
-                    of Research</span>
+                    style="background-image:linear-gradient(to right, #9867F0, #ED4E50); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    漫长的研究...</span>
         </h1>
         <p class="max-w-5xl mx-auto text-gray-600 mt-8" style="font-size:20px">
-            Say Hello to GPT Researcher, your AI mate for rapid insights and comprehensive research. GPT Researcher
-            takes care of everything from accurate source gathering to organization of research results - all in one
-            platform designed to make your research process a breeze.
+            <strong>Glm4适配版。</strong>向GPT研究员问好，他是您快速获取深入见解和全面研究的AI助手。GPT研究员负责从精确的源收集到研究结果的整理——所有这些都在一个平台上，旨在让您的研发过程变得轻松。
         </p>
-        <a href="#form" class="btn btn-primary">Get Started</a>
+        <a href="#form" class="btn btn-primary">开始</a>
     </div>
 </section>
 
@@ -62,7 +60,7 @@
                                                 alt="Auto Agent"></div>
     <form method="POST" class="mt-3" onsubmit="GPTResearcher.startResearch(); return false;">
         <div class="form-group">
-            <label for="task" class="agent-question">What would you like me to research next?</label>
+            <label for="task" class="agent-question">你想研究啥？</label>
             <input type="text" id="task" name="task" class="form-control" required>
             <input type="radio" name="agent" id="autoAgent" value="Auto Agent" checked hidden>
         </div>
@@ -74,11 +72,11 @@
             <button type="button" id="btnShowAuto" class="btn btn-secondary mt-3 btn-show">Auto Agent</button>
         </div>
         <div class="form-group">
-            <label for="report_type" class="agent-question">What type of report would you like me to generate?</label>
+            <label for="report_type" class="agent-question">你想生成什么类型的报告?</label>
             <select name="report_type" class="form-control" required>
-                <option value="research_report">Summary - Short and fast (~2 min)</option>
-                <option value="detailed_report">Detailed - In depth and longer (~5 min)</option>
-                <option value="resource_report">Resource Report</option>
+                <option value="research_report">摘要 - 短平快 (~2 分钟)</option>
+                <option value="detailed_report">详细摘要 - 有深度 (~5 分钟)</option>
+                <option value="resource_report">资源报告</option>
             </select>
         </div>
         <div class="form-group">
@@ -87,25 +85,25 @@
     </form>
 
     <div class="margin-div">
-        <h2>Agent Output</h2>
-        <p class="mt-2 text-left" style="font-size: 0.8rem;">An agent tailored specifically to your task
-                        will be generated to provide the most precise and relevant research results.</p>
+        <h2>Agent 输出</h2>
+        <p class="mt-2 text-left" style="font-size: 0.8rem;">将生成一个专门针对您任务的代理，以提供最精确和相关的搜索结果。
+</p>
         <div id="output"></div>
     </div>
     <div class="margin-div">
-        <h2>Research Report</h2>
+        <h2>研究报告</h2>
         <div id="reportContainer"></div>
         <div id="reportActions">
             <div class="alert alert-info" role="alert" id="status"></div>
-            <a id="copyToClipboard" onclick="GPTResearcher.copyToClipboard()" class="btn btn-secondary mt-3" style="margin-right: 10px;">Copy to clipboard</a>
-            <a id="downloadLink" href="#" class="btn btn-secondary mt-3" style="margin-right: 10px;" target="_blank">Download as PDF</a>
-            <a id="downloadLinkWord" href="#" class="btn btn-secondary mt-3" target="_blank">Download as Docx</a>
+            <a id="copyToClipboard" onclick="GPTResearcher.copyToClipboard()" class="btn btn-secondary mt-3" style="margin-right: 10px;">复制到剪切板</a>
+            <a id="downloadLink" href="#" class="btn btn-secondary mt-3" style="margin-right: 10px;" target="_blank">保存为 PDF</a>
+            <a id="downloadLinkWord" href="#" class="btn btn-secondary mt-3" target="_blank">保存为 Docx</a>
         </div>
     </div>
 </main>
 
 <footer>
-    <p>GPT Researcher &copy; 2024 | <a target="_blank" href="https://github.com/assafelovic/gpt-researcher">GitHub
+    <p>GPT Researcher 茉卷版 &copy; 2024 | <a target="_blank" href="https://github.com/assafelovic/gpt-researcher">GitHub
         Page</a></p>
 </footer>
 

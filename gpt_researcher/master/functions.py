@@ -42,7 +42,10 @@ def get_retriever(retriever):
         case "BingSearch":
             from gpt_researcher.retrievers import BingSearch
             retriever = BingSearch
-
+        # Add Zhipu
+        case "ZhipuSearch":
+            from gpt_researcher.retrievers import Zhipu_search
+            retriever = Zhipu_search
         case _:
             raise Exception("Retriever not found.")
 

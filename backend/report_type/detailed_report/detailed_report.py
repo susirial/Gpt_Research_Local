@@ -58,6 +58,9 @@ class DetailedReport():
 
     async def _get_all_subtopics(self) -> list:
         subtopics = await self.main_task_assistant.get_subtopics()
+        # glm adaption£¬tmp fix, null list from llm
+        if isinstance(subtopics,list):
+            return subtopics
         return subtopics.dict()["subtopics"]
 
     async def _generate_subtopic_reports(self, subtopics: list) -> tuple:
